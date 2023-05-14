@@ -18,7 +18,7 @@ spec:
         tier: frontend
     spec: # Pod spec
       containers:
-      - name: mycontainer
-        image: devopsjourney1/mywebapp
-        ports:
-        - containerPort: 80
+        - name: mycontainer
+          image: jay75chauhan/myappnode:1.0.0
+          ports:
+            - containerPort: 3000

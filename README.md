@@ -74,6 +74,7 @@ minikube service hello-node
 # Deployments 
 ```
 kubectl apply -f solution/v1.yaml
+kubectl delete -f solution/v1.yaml
 ```
 
 # Service LoadBalancers 
@@ -94,10 +95,16 @@ kubectl apply -f solution/v4.yaml
 
 
 # Troubleshooting, Logs, Rollouts, Draining Nodes 
-k describe deployment mydeployment
+
+kubectl describe deployment mydeployment
+
 ### Logs
-k logs -f -l app=mywebapp
+kubectl logs -f -l app=mywebapp
 ### Rollouts
 kubectl rollout 
-k rollout restart deployment mydeployment
+kubectl rollout restart deployment mydeployment
+
+Cordon will mark the node as unschedulable. Uncordon will mark the node as schedulable. The given node will be marked unschedulable to prevent new pods from arriving. Then drain deletes all pods except mirror pods (which cannot be deleted through the API server).
+
+kubectl cordon minikube
 kubectl drain minikube --ignore-daemonsets=true --force
